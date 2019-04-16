@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Feeds </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+
+<body>>
+	<header id="header">
+			<div id="logo" class="pull-left">
+				<h1>Ins Feeds</h1>
+			</div>
+	</header>
+
+	<div class="container" id="crwtTable">
+
+				<script id="entry-template" type="text/x-handlebars-template">
+					<tr>
+						<td class='account'>
+              <img class='profile' src={{profile_pic}}></img>
+              <span class='user'>
+                <h3 class='name'>{{user}}</h3>
+                <span class='time'>{{time}}</span>
+              </span>
+              <figure >
+                <img class='media' src={{image}}></img>
+                <figcaption>{{caption}}</figcaption>
+              <figure>
+
+						</td>
+					</tr>
+				</script>
+
+				<div class="list">
+					<table id="templatedProjects" >
+
+					</table>
+				</div>
+
+			</div>
+
+		<!-- JavaScript Libraries -->
+		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+		<script src="js/handlebars-v4.0.12.js"></script>
+		<script src="js/main.js"></script>
+    <script type="text/javascript" src="/ste/test.json"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,String.prototype.repeat,Array.prototype.find,Array.prototype.findIndex,Math.trunc,Math.sign"></script>
+    <script src="luxon.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+	</body>
+	</html>

@@ -1,0 +1,53 @@
+body {
+	font-family: "Open Sans", sans-serif;
+	background-color: #dcdcdc;
+}
+
+.profile {
+  border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin-left: 3vw;
+	margin-top: 2vh;
+}
+
+.user{
+	position: absolute;
+	margin-left: 2vw;
+	margin-top: 2vh;
+}
+
+.time {
+	margin-block-start: 0;
+}
+.name {
+	margin-block-start: 0;
+	vertical-align: top
+}
+.media{
+	height: 42vh;
+	padding-bottom:2vh;
+	width:auto;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr{
+	width: 20vw;
+  background-color: #fff;
+  padding:10px;
+  }
+
+td{
+  border-collapse: collapse;
+  box-shadow: 5px 5px 10px rgba(73, 78, 92, 0.25);
+}
+
+table {
+  width: 20vw;
+  font-size: 12px;
+  border-spacing: 2vh;
+  transition: 0.5s;
+  overflow: auto;
+}
