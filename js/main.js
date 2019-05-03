@@ -1,28 +1,78 @@
-var complexData;
-$.getJSON('https://api.myjson.com/bins/hie12', function(json) {
+let feed = document.getElementById("news");
+
+$( ".list-group-item" ).click(function() {
+  let media = $(this).html();
+  $("#media-type").text(media);
+});
+
+let complexData;
+$.getJSON('https://api.myjson.com/bins/ee3oc', function(json) {
   console.log(json);
   complexData  = json;// show the JSON file content into console
 
   complexData.sort(function(a,b){
     return new Date(b.time) - new Date(a.time);
   });
+
 // Call this function when the page loads (the "ready" event)
-  $(document).ready(function() {
-    console.log(complexData);
+  $(document).ready(function () {
 
     // compile the template
-    var source   = $("#entry-template").html();
-    var template = Handlebars.compile(source);
-    var parentDiv = $("#templatedProjects");
+      let parentDiv = $("#wrap");
+      let source = $("#entry-template").html();
+      let template = Handlebars.compile(source);
 
     // now iterate through the complexData list and keep appending:
 
-    for (var i = 0; i < complexData.length; i++) {
+    for (let i = 0; i < complexData.length; i++) {
+
         complexData[i].time = moment(new Date(complexData[i].time)).fromNow();
-        var curData = complexData[i];
-        var curHtml = template(curData);
+        let curData = complexData[i];
+        let curHtml = template(curData);
         parentDiv.append(curHtml);
-        console.log(curData)
       }
   });
 });
+
+//Infinite Scroll
+function yHandler() {
+  let wrap = document.getElementById('wrap');
+  let contentHeight = wrap.offsetHeight;
+  let yOffset = window.pageYOffset;
+  let y = yOffset + window.innerHeight;
+  if (y>= contentHeight) {
+    getFeeds('https://api.myjson.com/bins/ee3oc');
+  }
+}
+window.onscroll = yHandler;
+
+function getFeeds(url) {
+  //AJAX
+  let ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url);
+    ourRequest.onload = function() {
+    let ourData = JSON.parse(ourRequest.responseText);
+    console.log(ourData[0]);
+    renderHTML(ourData);
+  };
+  ourRequest.send();
+};
+
+function renderHTML(data) {
+
+    // compile the template
+      let parentDiv = $("#wrap");
+      let source = $("#entry-template").html();
+      let template = Handlebars.compile(source);
+
+    // now iterate through the complexData list and keep appending:
+
+    for (let i = 0; i < complexData.length; i++) {
+
+        data[i].time = moment(new Date(data[i].time)).fromNow();
+        let curData = data[i];
+        let curHtml = template(curData);
+        parentDiv.append(curHtml);
+      }
+
+}
