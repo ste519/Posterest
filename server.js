@@ -12,26 +12,19 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://ste519:123@cluster0-9uig7.mongodb.net/test?retryWrites=true";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
+app.get('/feeds', (req, res) => {
 
 
 
-app.get('/feeds', async (req, res) => {
-  // db.all() fetches all results from an SQL query into the 'rows' variable:
-  // db.all('SELECT name FROM users', (err, rows) => {
-  //   console.log(rows);
-  //   const allUsernames = rows.map(e => e.name);
-  //   console.log(allUsernames);
-  //   res.send(allUsernames);
-  // });
   console.log("hello");
-  client.connect(err => {
-    const collection = client.db("test").collection("rss");
-    collection.find({}).toArray((err, result) => {
+  client.connect((err) => {
+    const collection = client.db("test").collection("ins");
+    collection.find({}).toArray((err, result)=>{
       if (err) throw err;
-      res.send(result);
+      else res.send(result);
     });
   });
-  client.db("test").close();
+
 });
 
 
